@@ -1,0 +1,18 @@
+
+{
+  "short_name": "办学日程",
+  "name": "中外合作办学项目日程管理系统",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2641/2641409.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "background_color": "#f8fafc",
+  "display": "standalone",
+  "theme_color": "#0f172a",
+  "description": "专业的中外合作办学项目管理看板"
+}
