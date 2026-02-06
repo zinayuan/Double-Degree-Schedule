@@ -171,13 +171,23 @@ const INITIAL_MATERIALS: Material[] = [
 const App: React.FC = () => {
   // 从本地存储初始化数据
   const [milestones, setMilestones] = useState<Milestone[]>(() => {
-    const saved = localStorage.getItem('xmu_mba_milestones');
-    return saved ? JSON.parse(saved) : INITIAL_MILESTONES;
+    try {
+      const saved = localStorage.getItem('xmu_mba_milestones');
+      return saved ? JSON.parse(saved) : INITIAL_MILESTONES;
+    } catch (error) {
+      console.error('Failed to load milestones from localStorage:', error);
+      return INITIAL_MILESTONES;
+    }
   });
   
   const [materials, setMaterials] = useState<Material[]>(() => {
-    const saved = localStorage.getItem('xmu_mba_materials');
-    return saved ? JSON.parse(saved) : INITIAL_MATERIALS;
+    try {
+      const saved = localStorage.getItem('xmu_mba_materials');
+      return saved ? JSON.parse(saved) : INITIAL_MATERIALS;
+    } catch (error) {
+      console.error('Failed to load materials from localStorage:', error);
+      return INITIAL_MATERIALS;
+    }
   });
 
   const [activeTab, setActiveTab] = useState<'dashboard' | 'list' | 'materials' | 'publish' | 'sync'>('dashboard');
@@ -193,8 +203,12 @@ const App: React.FC = () => {
 
   // 每次数据变动都保存到本地存储
   useEffect(() => {
-    localStorage.setItem('xmu_mba_milestones', JSON.stringify(milestones));
-    localStorage.setItem('xmu_mba_materials', JSON.stringify(materials));
+    try {
+      localStorage.setItem('xmu_mba_milestones', JSON.stringify(milestones));
+      localStorage.setItem('xmu_mba_materials', JSON.stringify(materials));
+    } catch (error) {
+      console.error('Failed to save to localStorage:', error);
+    }
   }, [milestones, materials]);
 
   const handleGenerate = async () => {
