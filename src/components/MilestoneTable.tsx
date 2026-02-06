@@ -61,7 +61,7 @@ const MilestoneTable: React.FC<MilestoneTableProps> = ({ milestones, onUpdateSta
 
   return (
     <div className="space-y-12 pb-20 max-w-5xl mx-auto animate-fadeIn">
-      {groupedMilestones.map((group, gIdx) => (
+      {groupedMilestones.map((group) => (
         <div key={group.phase} className="relative group">
           {/* 阶段标题与视觉导轨 */}
           <div className="flex items-center gap-4 mb-8 sticky top-0 bg-slate-50/80 backdrop-blur-md py-4 z-10 px-2">

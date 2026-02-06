@@ -218,7 +218,7 @@ const App: React.FC = () => {
     } catch (error) { console.error(error); } finally { setIsAdviceLoading(false); }
   };
 
-  const handleAddManualItem = () => {
+  const handleAddMilestone = () => {
     if (!formData.title || !formData.date) return;
     const newItem: Milestone = {
       id: Date.now().toString(),
@@ -358,3 +358,37 @@ const App: React.FC = () => {
                 <div className="space-y-2.5">
                   <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-1">计划日期</label>
                   <input type="date" className="w-full bg-slate-100/
+50 border-2 border-transparent rounded-2xl px-5 py-4 text-sm font-bold focus:bg-white focus:border-blue-500 outline-none transition-all shadow-inner" value={formData.date} onChange={(e) => setFormData({...formData, date: e.target.value})}/>
+                </div>
+              </div>
+              <div className="space-y-2.5">
+                <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-1">所属阶段</label>
+                <select className="w-full bg-slate-100/50 border-2 border-transparent rounded-2xl px-5 py-4 text-sm font-bold focus:bg-white focus:border-blue-500 outline-none transition-all shadow-inner" value={formData.phase} onChange={(e) => setFormData({...formData, phase: e.target.value as ProgramPhase})}>
+                  <option value={ProgramPhase.PREPARATION}>前期筹备</option>
+                  <option value={ProgramPhase.NEGOTIATION}>磋商洽谈</option>
+                  <option value={ProgramPhase.APPLICATION}>申报审核</option>
+                  <option value={ProgramPhase.APPROVAL}>获批授牌</option>
+                  <option value={ProgramPhase.RECRUITMENT}>招生录取</option>
+                  <option value={ProgramPhase.OPERATION}>运行教学</option>
+                </select>
+              </div>
+              <div className="space-y-2.5">
+                <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-1">详细说明</label>
+                <textarea placeholder="描述该事项的关键目标、交付物或注意事项..." className="w-full bg-slate-100/50 border-2 border-transparent rounded-2xl px-5 py-4 text-sm font-bold focus:bg-white focus:border-blue-500 outline-none transition-all shadow-inner resize-none" rows={4} value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})}/>
+              </div>
+              <div className="space-y-2.5">
+                <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-1">责任人</label>
+                <input type="text" placeholder="如：厦门大学 MBA 中心" className="w-full bg-slate-100/50 border-2 border-transparent rounded-2xl px-5 py-4 text-sm font-bold focus:bg-white focus:border-blue-500 outline-none transition-all shadow-inner" value={formData.owner} onChange={(e) => setFormData({...formData, owner: e.target.value})}/>
+              </div>
+              <button onClick={handleAddMilestone} className="w-full py-5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl font-black text-base hover:from-blue-700 hover:to-indigo-700 transition-all shadow-2xl active:scale-95">
+                ✅ 确认添加
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default App;
